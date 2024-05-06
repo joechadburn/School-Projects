@@ -1,0 +1,57 @@
+name = "Joe asks: "
+question = "Yes"
+answer = ""
+import random
+random_number = random.randint(1,9)
+random_number2 = random.randint(1,9)
+M = ("Magic 8-Ball's answer: ")
+if random_number2 == 10:
+  L = ("you have to ask a question")
+if random_number2 == 1:
+  L = ("Is my future boring?")
+elif random_number2 == 2:
+  L = ("Will I become successful?")
+elif random_number2 == 3:
+  L = ("Am I smart?")
+elif random_number2 == 4: 
+  L = ("?")
+elif random_number2 == 5: 
+  L = ("Can I become rich?")
+elif random_number2 == 6: 
+  L = ("Will I be happy?")
+elif random_number2 == 7:
+  L = ("am I smart?")
+elif random_number2 == 8: 
+  L = ("How is my Health?")
+elif random_number2 == 9:
+  L = ("Does she like me?")
+
+if random_number == 1:
+  print(name + L)
+  print (M + "Yes - definitely")
+elif random_number == 2:
+  print(name + L)
+  print (M +" It is decidedly so")
+elif random_number == 3:
+  print(name + L)
+  print(M + "Without a doubt")
+elif random_number == 4: 
+  print(name + L)
+  print(M + "Reply hazy, try again")
+elif random_number == 5: 
+  print(name + L)
+  print(M + "Ask again later")
+elif random_number == 6: 
+  print(name + L)
+  print(M + "Better not tell you now")
+elif random_number == 7:
+  print(name + L)
+  print(M + "My sources say no")
+elif random_number == 8: 
+  print(name + L)
+  print(M + "Outlook not so good")
+elif random_number == 9:
+  print (name + L)
+  print (M + "Very doubtful")
+else:
+  print("Error")
