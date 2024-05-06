@@ -1,0 +1,31 @@
+medical_insurance_cost = {"Marina": 6607.0, "Vinay":3225.0}
+medical_insurance_cost.update({"Connie": 8886.0, "Isaac": 16444.0, "Valentina": 6420.0})
+medical_insurance_cost["Vinay"] = 3325.0
+total_cost = 0
+for cost in medical_insurance_cost.values():
+  total_cost += cost
+average_cost = total_cost/len(medical_insurance_cost)
+print('Average Insurance Cost: ' + str(average_cost))
+print(medical_insurance_cost)
+names = ['Marina', 'Vinay,Connie', 'Isaac', 'Valentina']
+ages = [27, 24, 43, 35, 52]
+names_ages_dictionary = dict(zip(names, ages))
+print(names_ages_dictionary)
+marina_age = names_ages_dictionary.get('Marina')
+print("Marina's age is " + str(marina_age))
+medical_data_dict = {}
+medical_data_dict["Marina"] = {'age': marina_age, "sex": "Female", "bmi":31.1, 'smoker status': "Non-smoker", "Insurance_cost": 6607.0}
+medical_data_dict["Vinay"]	= {'age': 24, "sex": "Male", "bmi":	26.9, 'smoker status': "Non-smoker", "Insurance_cost": 3225.0}
+medical_data_dict["Connie"]	= {'age': 43, "sex": "Female", "bmi":	25.3, 'smoker status': "Non-smoker", "Insurance_cost": 8886.0}
+medical_data_dict["Isaac"]	= {'age': 35, "sex": "Male", "bmi":	20.6, 'smoker status': "smoker", "Insurance_cost": 16444.0}
+medical_data_dict["Valentina"]	= {'age': 52, "sex": "Female", "bmi":	18.7, 'smoker status': "Non-smoker", "Insurance_cost": 6420.0}
+print("Connie's insurance cost is " + str(medical_data_dict["Connie"]["Insurance_cost"]) + "dollars.")
+
+del medical_data_dict['Vinay']
+print(medical_data_dict )
+
+for name, record in medical_data_dict.items():
+  print(name + " is a " + str(record["age"]) + \
+  " year old " + record["sex"] + " " + record["smoker status"] \
+  + " with a BMI of " + str(record["bmi"]) + \
+  " and insurance cost of " + str(record["Insurance_cost"]))
