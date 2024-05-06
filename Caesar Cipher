@@ -1,0 +1,34 @@
+alphabet = 'abcdefghijklmnopqrstuvwxyz'
+alphabet_dict = {
+        'a': 0, 'b': 1, 'c': 2, 'd': 3, 'e': 4, 'f': 5, 'g': 6,
+        'h': 7, 'i': 8, 'j': 9, 'k': 10, 'l': 11, 'm': 12,
+        'n': 13, 'o': 14, 'p': 15, 'q': 16, 'r': 17, 's': 18,
+        't': 19, 'u': 20, 'v': 21, 'w': 22, 'x': 23, 'y': 24, 'z': 25, ' ':26, '?': 27, '!': 28 
+    }
+
+cypher = 'xuo jxuhu! jxyi yi qd unqcfbu ev q squiqh syfxuh. muhu oek qrbu je tusetu yj? y xefu ie! iudt cu q cuiiqwu rqsa myjx jxu iqcu evviuj!'
+def cipher(message, displacement):
+  list_from_meassage = []
+  for decoded_message in message:
+    if decoded_message in alphabet:
+      number_index = alphabet_dict[decoded_message] - displacement - 6
+      letters = alphabet[number_index]
+      list_from_meassage.append(letters)
+    else:
+      list_from_meassage.append(decoded_message)
+  return ''.join(list_from_meassage)
+
+ronalds_message = cipher(cypher, 10)
+#print(ronalds_message)
+my_message = ("Hi Ronald, it took me forever to figure this one out but none the less it is a success. I created a function for you to be able to cipher any of these messages. i hope it works out")
+
+reply = cipher(my_message, 10)
+#print (reply)
+first_message = 'jxu evviuj veh jxu iusedt cuiiqwu yi vekhjuud.'
+ciphered_first_message = cipher(first_message, 10)
+second_message = 'bqdradyuzs ygxfubxq omqemd oubtqde fa oapq kagd yqeemsqe ue qhqz yadq eqogdq!'
+#print (ciphered_first_message)
+ciphered_second_message = cipher(second_message, 6)
+unknown_message = "vhfinmxkl atox kxgwxkxw tee hy maxlx hew vbiaxkl hulhexmx. px'ee atox mh kxteer lmxi ni hnk ztfx by px ptgm mh dxxi hnk fxlltzxl ltyx."
+ciphered_unknown_message = cipher(unknown_message, 13)
+# print (ciphered_unknown_message)
