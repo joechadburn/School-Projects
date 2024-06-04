@@ -1,0 +1,135 @@
+import numpy as np
+import csv 
+insurance_list= []
+ages = []
+sex = []
+bmi = []
+children = []
+smoker = []
+region = []
+charges = []
+with open('insurance.csv', newline='') as csvfile:
+    reader = csv.DictReader(csvfile)
+    for row in reader:
+        insurance_list.append(row)
+        ages.append(row['age'])
+        sex.append(row['sex'])
+        bmi.append(row['bmi'])
+        children.append(row['children'])
+        smoker.append(row['smoker'])
+        region.append(row['region'])
+        charges.append(row['charges'])
+#Find the average age of insurance:
+def average(lst):
+    return sum(lst) / len(lst)
+int_in_age = []
+for intt in ages:
+    int_in_age.append(int(intt))
+average_ages = average(int_in_age)
+print ("The average age to by this insurance is: " + str(round(average_ages)))
+#See if more males or females buy this insurance:
+male_count = 0
+female_count = 0
+for ratio in sex:
+    if ratio == 'male':
+        male_count += 1
+    elif ratio == 'female':
+        female_count += 1
+if male_count > female_count:
+    print("There are more males are on this insurance than females.")
+elif female_count > male_count:
+    print('More Females have this insurance.')
+else:
+    print('There is an equil number of males and females on this insurance.')
+#comparing ages to the cost of insurance:
+ages_cost_list = list(zip(ages, charges))
+least_cost = []
+most_cost = []
+for cost in max(ages_cost_list):
+    most_cost.append(cost)
+for cost in min(ages_cost_list):
+    least_cost.append(cost)
+differanc_age_cost = float(most_cost[1])
+least_in_age = float(least_cost[1])
+print ("The most expensive cost for this insurance is: $"+ str(round(float(most_cost[1]),2)) + " and this person is " + str(most_cost[0]))
+print ("The least expensive cost for this insurance is: $"+ str(round(float(least_cost[1]),2)) + " and this person is " + str(least_cost[0]))
+print ("The least cost is : $" +str(round(differanc_age_cost - least_in_age, 2)) + " than the most expensive insurance.")
+#see the average male cost and than the average female cost:
+gender_to_cost_ratio = list(zip(sex, charges))
+male_cost = []
+female_cost = []
+for gender, cost in gender_to_cost_ratio:
+    if gender == 'male':
+        male_cost.append(cost)
+    elif gender == 'female':
+        female_cost.append(cost)
+float_male = list(np.float_(male_cost))
+float_female =  list(np.float_(female_cost))
+average_male_cost = average(float_male)
+average_female_cost = average(float_female)
+print ("The average male cost is $" + str(round(average_male_cost,2)) + " and the average female cost is $" + str(round(average_female_cost,2)))
+
+if average_male_cost > average_female_cost:
+    print("Females on average pay $" + str(round(average_male_cost - average_female_cost, 2)) + " less than males")
+elif average_female_cost > average_male_cost:
+    print("Males on average pay $" + str(round(average_male_cost - average_female_cost, 2)) + " less than females")
+else: 
+    print("Males and Females pay the same for insurance.")
+
+# Find where most people are buying the insurance or the demographic "region":
+def occerences_in_region(place):
+    region_dict = {}
+    for times in place:
+        if times in region_dict:
+            region_dict[times] += 1
+        else:
+            region_dict[times] = 1
+    return region_dict
+dict_region_occurances = occerences_in_region(region)
+print (dict_region_occurances)
+mode_region = max(dict_region_occurances)
+least_region = min(dict_region_occurances)
+print("The mode region subscribed on this insurance is " + mode_region)
+print("The least subscribed region is " + least_region)
+
+# Find how much more smokers pay than non-smokers:
+smoker_charges_list = list(zip(smoker, charges))
+smoker_cost = []
+non_smoker_cost = []
+for smoke, cost in smoker_charges_list:
+    if smoke == 'yes':
+        smoker_cost.append(cost)
+    elif smoke == 'no':
+        non_smoker_cost.append(cost)
+float_smoker = list(np.float_(smoker_cost))
+float_non_smoker = list(np.float_(non_smoker_cost))
+average_smoker_cost = average(float_smoker)
+average_non_smoker_cost = average(float_non_smoker)
+print ("The average smoker pays $" + str(round(average_smoker_cost,2)) + ". The average non-smoker pays $" + str(round(average_non_smoker_cost,2)) + ". wich is $" + str(round(average_smoker_cost - average_non_smoker_cost,2)) + " less than smokers.")
+
+#Compare how children affect the cost of income:
+children_cost_ratio_list = list(zip(children, charges))
+print (children_cost_ratio_list)
+children_cost_up_to_3 = []
+children_4_up_5 = []
+children_more_than_5 = []
+no_children_cost = []
+for child, cost in children_cost_ratio_list:
+    if int(child) == 0:
+        no_children_cost.append(cost)
+    elif int(child) <= 3 and int(child )!= 0:
+        children_cost_up_to_3.append(cost)
+    elif int(child) <= 5 and int(child) > 3:
+        children_4_up_5.append(cost)
+    elif int(child) > 5:
+        children_more_than_5.append(cost)
+float_no_child = list(np.float_(no_children_cost))
+float_child_3 = list(np.float_(children_cost_up_to_3))
+float_4_child = list(np.float_(children_4_up_5))
+float_6_plus = list(np.float_(children_more_than_5))
+child_3_ave = round(average(float_child_3), 2)
+no_child_ave = round(average(float_no_child), 2)
+children_4_ave = round(average(float_4_child), 2)
+print ("$"+ str(no_child_ave) + " is how much the average cutumer pays if they have no children")
+print ("$" + str(child_3_ave) + " is the average of how much peopel are paying up to 3 children")
+print ("$" + str(children_4_ave) + " is how much people pay for up to five children on average.")
